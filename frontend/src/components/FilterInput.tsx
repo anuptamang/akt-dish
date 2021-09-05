@@ -15,11 +15,14 @@ const FilterInput:React.FC<FilterInputProps> = ({ingType, onFilter}) => {
 
   return (
     <>
-      <li className="mb-2 pr-3 capitalize">
-        <label htmlFor={`filterRecipe-${ingType}`}>
-          <input onChange={handleInputCheck} type="checkbox" value={ingType} checked={checkboxValue === ingType} name="ingType" id={`filterRecipe-${ingType}`} /> {ingType}
-        </label>
-      </li>
+     {
+       ingType.length > 0 &&
+        <li className="mb-2 pr-3 capitalize">
+          <label htmlFor={`filterRecipe-${ingType}`}>
+            <input onChange={handleInputCheck} type="checkbox" value={ingType} checked={checkboxValue === ingType} name="ingType" id={`filterRecipe-${ingType}`} /> {ingType}
+          </label>
+        </li>
+     }
     </>
   )
 }

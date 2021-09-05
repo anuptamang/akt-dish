@@ -32,7 +32,8 @@ const AddDishContainer = () => {
     setRecipeIngredient(newIngredients)
   }  
 
-  const addMoreIngredientsField = () => {
+  const addMoreIngredientsField = (e:any) => {
+    e.preventDefault()
     setRecipeIngredient([...recipeIngredient, { ingredient_name: '', ingredient_quantity : '', ingredient_unit: ''}])
   }
 
@@ -97,7 +98,7 @@ const AddDishContainer = () => {
           }
           <div className="row flex">
             <div className="col md:w-3/4">
-              <div className="text-right"><button className="inline-block p-3 text-red-400 hover:opacity-70" onClick={()=> addMoreIngredientsField()}>Add More</button></div>
+              <div className="text-right"><button className="inline-block p-3 text-red-400 hover:opacity-70" onClick={addMoreIngredientsField}>Add More</button></div>
             </div>
           </div>
         </div>
