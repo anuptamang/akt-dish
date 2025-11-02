@@ -1,5 +1,6 @@
 
 # Dish Recipe APP
+### Preview Link: https://akt-dish.herokuapp.com/
 ## Technologies Used:
 - React
 - Redux - Saga
