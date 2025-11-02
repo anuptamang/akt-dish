@@ -50,12 +50,19 @@ const SingleDish = () => {
                 <h2 className="text-2xl font-bold mb-2">{singleProduct?.name}</h2>
                 
                 <h3 className="text-md font-bold mb-2">Ingredients:</h3>
+                {
+                    singleProduct?.recipeIngredient.map(ingredient => 
+                      ingredient.ingredient_name.length <= 0 || ingredient.ingredient_quantity.length <= 0 || ingredient.ingredient_unit.length <= 0 ? 
+                    'Not Available':null)
+                  }
                 <ol className="list-decimal pl-4 text-sm mb-2">
                   {
-                    singleProduct?.recipeIngredient.map(ingredient => <li>
-                    <strong className="list-ingredients__name">{ingredient.ingredient_name} : </strong>
-                    <span className="list-ingredients__quantity">{ingredient.ingredient_quantity} {ingredient.ingredient_unit}</span>
-                  </li>)
+                    singleProduct?.recipeIngredient.map(ingredient => 
+                      ingredient.ingredient_name.length > 0 || ingredient.ingredient_quantity.length > 0 || ingredient.ingredient_unit.length > 0 ? 
+                    <li>
+                      <strong className="list-ingredients__name">{ingredient.ingredient_name} : </strong>
+                      <span className="list-ingredients__quantity">{ingredient.ingredient_quantity} {ingredient.ingredient_unit}</span>
+                    </li>:null)
                   }
                 </ol>
                 <h3 className="text-md font-bold mb-2">How to cook:</h3>                
