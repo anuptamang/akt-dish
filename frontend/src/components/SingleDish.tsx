@@ -16,43 +16,43 @@ const SingleDish = () => {
     history.push('/')
   }
   
-  const {name, image, recipeIngredient, recipeInstructions} = singleProduct
+  // const {name, image, recipeIngredient, recipeInstructions} = singleProduct 
 
-  const dispatch = useDispatch()
-  const userLogin = useSelector((state:any) => state.userLogin)
-  const prodInCart = useSelector((state:any) => state.cart.cartItems) as Products[]
+  // const dispatch = useDispatch()
+  // const userLogin = useSelector((state:any) => state.userLogin)
+  // const prodInCart = useSelector((state:any) => state.cart.cartItems) as Products[]
   
-  const isDisabled = prodInCart.some(item => item._id === singleProduct._id)
+  // const isDisabled = prodInCart.some(item => item._id === singleProduct._id)
 
-  const { userInfo } = userLogin
+  // const { userInfo } = userLogin
 
-  const addToCart = () => {
-    dispatch({type: CART_ADD_ITEM, singleProduct})
-  }
+  // const addToCart = () => {
+  //   dispatch({type: CART_ADD_ITEM, singleProduct})
+  // }
   
   return (
     <>
       <div className="row md:flex space-x-3">
           <div className="col md:w-4/12">
-              <div className="dish-info__image block rounded bg-cover bg-center h-60 mb-3" style={{'backgroundImage': `url(${image})`}}></div>              
-            {
+              <div className="dish-info__image block rounded bg-cover bg-center h-60 mb-3" style={{'backgroundImage': `url(${singleProduct?.image})`}}></div>              
+            {/* {
               userInfo && 
             <Button disabled={isDisabled} onClick={addToCart} width="full">
               {
                 isDisabled ? 'Added' : 'Add To Cart'
               }
             </Button>
-            }
+            } */}
               
           </div>
           <div className="col md:w-4/6">
               <div className="dish-info__text p-3">
-                <h2 className="text-2xl font-bold mb-2">{name}</h2>
+                <h2 className="text-2xl font-bold mb-2">{singleProduct?.name}</h2>
                 
                 <h3 className="text-md font-bold mb-2">Ingredients:</h3>
                 <ol className="list-decimal pl-4 text-sm mb-2">
                   {
-                    recipeIngredient.map(ingredient => <li>
+                    singleProduct?.recipeIngredient.map(ingredient => <li>
                     <strong className="list-ingredients__name">{ingredient.ingredient_name} : </strong>
                     <span className="list-ingredients__quantity">{ingredient.ingredient_quantity} {ingredient.ingredient_unit}</span>
                   </li>)
@@ -61,7 +61,7 @@ const SingleDish = () => {
                 <h3 className="text-md font-bold mb-2">How to cook:</h3>                
                 <ol className="list-decimal pl-4 text-sm">
                   {
-                    recipeInstructions.map(instruction=> <li className="mb-2">
+                    singleProduct?.recipeInstructions.map(instruction=> <li className="mb-2">
                       {instruction}
                   </li>)
                   }

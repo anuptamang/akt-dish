@@ -60,7 +60,8 @@ function* addToCart(action:any):any {
       yield put({type: CART_ADD_ITEM_SUCCESS, product})
       const curr = JSON.parse(localStorage.getItem('cartItems') || '[]')
 
-      localStorage.setItem('cartItems', JSON.stringify([...curr,product]))
+      localStorage.setItem('cartItems', JSON.stringify([...curr, product]))
+      
    } catch (e) {
       //
    }
