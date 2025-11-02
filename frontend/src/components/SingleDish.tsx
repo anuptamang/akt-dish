@@ -1,6 +1,7 @@
 import React from 'react';
-import { RootStateOrAny, useSelector } from 'react-redux';
+import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
+import { CART_ADD_ITEM } from '../constants/cartConstants';
 import { Products } from '../models/product';
 import Button from './Button';
 
@@ -16,13 +17,33 @@ const SingleDish = () => {
   }
   
   const {name, image, recipeIngredient, recipeInstructions} = singleProduct
+
+  const dispatch = useDispatch()
+  const userLogin = useSelector((state:any) => state.userLogin)
+  const prodInCart = useSelector((state:any) => state.cart.cartItems) as Products[]
+  
+  const isDisabled = prodInCart.some(item => item._id === singleProduct._id)
+
+  const { userInfo } = userLogin
+
+  const addToCart = () => {
+    dispatch({type: CART_ADD_ITEM, singleProduct})
+  }
   
   return (
     <>
       <div className="row md:flex space-x-3">
           <div className="col md:w-4/12">
               <div className="dish-info__image block rounded bg-cover bg-center h-60 mb-3" style={{'backgroundImage': `url(${image})`}}></div>              
-            <Button>Add To Cart</Button>
+            {
+              userInfo && 
+            <Button disabled={isDisabled} onClick={addToCart} width="full">
+              {
+                isDisabled ? 'Added' : 'Add To Cart'
+              }
+            </Button>
+            }
+              
           </div>
           <div className="col md:w-4/6">
               <div className="dish-info__text p-3">

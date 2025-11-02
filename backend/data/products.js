@@ -15,7 +15,7 @@ const products = [
         ingredient_unit: 'medium',
       },
     ],
-    recipeInstructions: ['lorem ipsum'],
+    recipeInstructions: ['lorem ipsum', 'lorem ipsum'],
   },
   {
     name: 'Pizza',
@@ -23,17 +23,17 @@ const products = [
       'https://st.depositphotos.com/1003814/5052/i/950/depositphotos_50523105-stock-photo-pizza-with-tomatoes.jpg',
     recipeIngredient: [
       {
-        ingredient_name: 'Chicken',
+        ingredient_name: 'Cheese',
         ingredient_quantity: '500',
         ingredient_unit: 'gm',
       },
       {
-        ingredient_name: 'Onion',
+        ingredient_name: 'Tomato',
         ingredient_quantity: '3',
         ingredient_unit: 'medium',
       },
     ],
-    recipeInstructions: ['lorem ipsum'],
+    recipeInstructions: ['lorem ipsum', 'lorem ipsum'],
   },
 ]
 

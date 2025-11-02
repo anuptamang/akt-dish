@@ -71,7 +71,7 @@ const MainContainer = () => {
           loading ? <Loader /> : 
         <div className="row md:flex md:flex-wrap md:-m-3">
           {
-            filteredProducts?.map(product=> <div key={product._id} className="col md:w-1/2 lg:w-3/12 p-3">
+            filteredProducts?.map(product=> <div key={product._id} className="col md:w-1/2 lg:w-3/12 p-3 flex">
             <DishInfo product={product} />
           </div>)
           }

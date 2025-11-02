@@ -35,8 +35,8 @@ const DishUserPanel:FC<DishUserPanelProps> = ({handleFilterCheck}) => {
   return (
     <div className="dish-user-panel md:flex md:justify-between mb-5">
       <div className="form filter-form md:w-2/3 mb-3">
-        <h2 className="flex items-center text-2xl w-full h-14 bg-red-200 px-4 py-1 rounded">Filter Dish Recipes</h2>
-          <div className="filter-drop p-3 bg-red-100">
+        <h2 className="flex items-center text-2xl w-full h-14 bg-red-200 dark:bg-gray-900 dark:text-white px-4 py-1 rounded">Filter Dish Recipes</h2>
+          <div className="filter-drop p-3 bg-red-100 dark:bg-white rounded">
             {
               loading ? <Loader /> : 
             <ul className="list-none flex flex-wrap">
