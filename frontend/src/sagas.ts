@@ -1,7 +1,7 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 import { CART_ADD_ITEM, CART_ADD_ITEM_SUCCESS, CART_RESET } from './constants/cartConstants';
-import { PRODUCT_CREATE_FAIL, PRODUCT_CREATE_REQUEST, PRODUCT_CREATE_RESET, PRODUCT_CREATE_SUCCESS, PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS } from './constants/productConstants';
-import { USER_LOGIN_REQUEST, USER_LOGIN_SUCCESS, USER_LOGOUT_REQUEST, USER_LOGOUT_SUCCESS } from './constants/userConstants';
+import { PRODUCT_CREATE_FAIL, PRODUCT_CREATE_REQUEST, PRODUCT_CREATE_RESET, PRODUCT_CREATE_SUCCESS, PRODUCT_LIST_FAIL, PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS } from './constants/productConstants';
+import { USER_LOGIN_FAIL, USER_LOGIN_REQUEST, USER_LOGIN_SUCCESS, USER_LOGOUT_REQUEST, USER_LOGOUT_SUCCESS } from './constants/userConstants';
 import { Products } from './models/product';
 import { addProduct } from './services/addProduct';
 import { getProducts } from './services/getProducts';
@@ -13,9 +13,10 @@ function* userLogin(action:any):any {
    try {
       const user = yield call(login, action.payload);
       
-      yield put({type: USER_LOGIN_SUCCESS, user})
+      yield put({type: USER_LOGIN_SUCCESS, payload: user})
    } catch (e) {
-      //
+      const message = e instanceof Error ? e.message : 'Unable to login'
+      yield put({type: USER_LOGIN_FAIL, payload: message})
    }
 }
 
@@ -35,9 +36,10 @@ function* listProduct(action:any):any {
    try {
       const products = yield call(getProducts);
       
-      yield put({type: PRODUCT_LIST_SUCCESS, products});
+      yield put({type: PRODUCT_LIST_SUCCESS, payload: products});
    } catch (e) {
-      //
+      const message = e instanceof Error ? e.message : 'Unable to fetch products'
+      yield put({type: PRODUCT_LIST_FAIL, payload: message})
    }
 }
 
@@ -46,10 +48,11 @@ function* createProduct(action:any):any {
    try {
       const product = yield call(addProduct, action.payload);
       
-      yield put({type: PRODUCT_CREATE_SUCCESS, product});
+      yield put({type: PRODUCT_CREATE_SUCCESS, payload: product});
       yield put({type: PRODUCT_CREATE_RESET})
    } catch (e) {
-      yield put({type: PRODUCT_CREATE_FAIL})
+      const message = e instanceof Error ? e.message : 'Unable to create product'
+      yield put({type: PRODUCT_CREATE_FAIL, payload: message})
    }
 }
 
