@@ -17,9 +17,10 @@
 - npm run build
 
 ## Demo Video
-- Generated capture: `demo/dish-recipe-app-demo.webm`
+- WebM capture: `demo/dish-recipe-app-demo.webm`
+- MP4 capture: `demo/dish-recipe-app-demo.mp4`
 - Reproduce the capture:
   1. Serve the production build: `npx http-server frontend/build -p 4173`
   2. In a new terminal, run `npm run demo:video` (optionally override the URL with `DEMO_BASE_URL=http://host:port`)
   3. After the script finishes, stop the temporary server.
-- The script uses Playwright to mock the API responses and walk through the key flows automatically.
+- The script uses Playwright to mock the API responses and walk through the key flows automatically. Convert to MP4 with `ffmpeg -i demo/dish-recipe-app-demo.webm demo/dish-recipe-app-demo.mp4` if needed.
